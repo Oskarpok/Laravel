@@ -1,6 +1,6 @@
 FROM php:8.4-fpm
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y libicu-dev \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     curl
 
-RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd intl
 
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
